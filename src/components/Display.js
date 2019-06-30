@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Display = () => {
+const Display = (props) => {
 	return(
-		<h1>Hello</h1>
+		<p>{props.calculation}</p>
 	);
 };
 

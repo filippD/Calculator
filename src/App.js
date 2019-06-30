@@ -3,13 +3,20 @@ import React from 'react';
 import Display from './components/Display';
 import ButtonPanel from './components/ButtonPanel';
 
-function App() {
-  return (
-    <div id="main">
-      <Display />
-      <ButtonPanel />
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <div id="main">
+        <Display calculation="0"/>
+        <ButtonPanel />
+      </div>
+    );
+  }
+
 }
 
 export default App;
