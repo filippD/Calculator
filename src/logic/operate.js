@@ -1,14 +1,14 @@
 import Big from 'big.js'
-const operate = (total, current, operator) => {
-  switch(operator) {
+const operate = (numberOne, numberTwo, operation) => {
+  switch(operation) {
     case '+':
-    return Big(total).plus(Big(current))
+    return Big(numberOne).plus(Big(numberTwo))
     case '-':
-    return Big(total).minus(Big(current))
+    return Big(numberOne).minus(Big(numberTwo))
     case 'x':
-    return Big(total).times(Big(current))
+    return Big(numberOne).times(Big(numberTwo))
     case ':':
-    return Big(total).div(Big(current))
+    return Big(numberOne).div(Big(numberTwo))
   }
 }
 
