@@ -1,7 +1,15 @@
 import operate from './operate'
 
 const calculate = (data, btnName) => {
-	if (data.calculation === "Infinity") {
+  if (data.current === '0' && data.operator === ":") {
+    return {
+      calculation: 'Can not divide by 0',
+      total: '',
+      current: '',
+      operator: ''
+    }
+  }
+	if (data.calculation === "Can not divide by 0") {
 		data = {
 			calculation: '0',
 			total: '',
