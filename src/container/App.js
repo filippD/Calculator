@@ -13,31 +13,30 @@ class App extends React.Component {
       current: '',
       operator: ''
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
+  handleClick (btnName) {
+    const data = {
+      calculation: this.state.calculation,
+      total: this.state.total,
+      current: this.state.current,
+      operator: this.state.operator
+    }
+    const newData = calculate(data, btnName);
+    this.setState({
+      calculation: newData.calculation,
+      total: newData.total,
+      current: newData.current,
+      operator: newData.operator
+    })
+  }
 
   render() {
-
-    const handleClick = (btnName) => {
-      const data = {
-        calculation: this.state.calculation,
-        total: this.state.total,
-        current: this.state.current,
-        operator: this.state.operator
-      }
-      const newData = calculate(data, btnName);
-      this.setState({
-        calculation: newData.calculation,
-        total: newData.total,
-        current: newData.current,
-        operator: newData.operator
-      })
-    }
-
     return (
       <div id="main" className="calculator">
         <Display calculation={this.state.calculation}/>
-        <ButtonPanel handleClick={handleClick}/>
+        <ButtonPanel handleClick={this.handleClick}/>
       </div>
     );
   }
