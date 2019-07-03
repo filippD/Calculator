@@ -6,8 +6,9 @@ const Button = (props) => {
 		backgroundColor: props.color || '#ffa51fe3',
 		width: props.width ? '50%' : '25%'
 	}
+	const { name, handleClick } = props;
 	return(
-	<button onClick={() => props.handleClick(props.name)} style={styles} className="button">{ props.name}</button>
+	<button onClick={() => props.handleClick(name)} style={styles} className="button">{name}</button>
 	);
 };
 

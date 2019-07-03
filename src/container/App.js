@@ -24,12 +24,8 @@ class App extends React.Component {
       operator: this.state.operator
     }
     const newData = calculate(data, btnName);
-    this.setState({
-      calculation: newData.calculation,
-      total: newData.total,
-      current: newData.current,
-      operator: newData.operator
-    })
+    const { calculation, total, current, operator } = newData;
+    this.setState({ calculation, total, current, operator })
   }
 
   render() {
