@@ -1,4 +1,13 @@
 .button {
 	font-size: 20px;
 	border: 1px solid #bfbfbf;
+	width: 25%;
+}
+
+.orange {
+	background: #ffa51fe3;
+}
+
+.wide {
+	width: 50%;
 }

@@ -1,14 +1,17 @@
 import React from 'react';
 import './Button.css';
 
+
 const Button = (props) => {
+	const { name, handleClick, color, width } = props;
 	const styles = {
-		backgroundColor: props.color || '#ffa51fe3',
-		width: props.width ? '50%' : '25%'
+		backgroundColor: color
 	}
-	const { name, handleClick } = props;
+	const colorClass = color ? "button" : "button orange";
+	const classStyles = width ? `${colorClass} wide` : `${colorClass}`
+	
 	return(
-	<button onClick={() => props.handleClick(name)} style={styles} className="button">{name}</button>
+	<button onClick={() => handleClick(name)} style={styles} className={classStyles}>{name}</button>
 	);
 };
 

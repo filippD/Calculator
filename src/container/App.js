@@ -16,11 +16,12 @@ class App extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this);
   }
-
+  // handleClick = (btnName) => {
+  //   this.setState(prevState => calculate(prevState, btnName)
+  // }
   handleClick (btnName) {
     this.setState(prevState => calculate(prevState, btnName))
   }
-
   render() {
     return (
       <div id="main" className="calculator">

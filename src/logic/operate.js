@@ -9,6 +9,8 @@ const operate = (numberOne, numberTwo, operation) => {
     return Big(numberOne).times(Big(numberTwo))
     case ':':
     return Big(numberOne).div(Big(numberTwo))
+    default:
+    return "0"
   }
 }
 
