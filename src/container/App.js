@@ -11,21 +11,14 @@ class App extends React.Component {
       calculation: '0',
       total: '',
       current: '',
-      operator: ''
+      operator: '',
+      shouldReset: false
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick (btnName) {
-    const data = {
-      calculation: this.state.calculation,
-      total: this.state.total,
-      current: this.state.current,
-      operator: this.state.operator
-    }
-    const newData = calculate(data, btnName);
-    const { calculation, total, current, operator } = newData;
-    this.setState({ calculation, total, current, operator })
+    this.setState(prevState => calculate(prevState, btnName))
   }
 
   render() {

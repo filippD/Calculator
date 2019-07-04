@@ -6,15 +6,17 @@ const calculate = (data, btnName) => {
       calculation: 'Can not divide by 0',
       total: '',
       current: '',
-      operator: ''
+      operator: '',
+      shouldReset: false
     }
   }
-	if (data.calculation === "Can not divide by 0") {
+	if (data.calculation === 'Can not divide by 0') {
 		data = {
 			calculation: '0',
 			total: '',
 			current: '',
-			operator: ''
+			operator: '',
+      shouldReset: false
 		}
 	}
 	const newData = data
@@ -37,28 +39,31 @@ const calculate = (data, btnName) => {
         } else if (data.operator.length && !data.current.length) {
           newData.calculation = data.total + btnName;
           newData.operator = btnName;
-        }	
+        }
+        newData.shouldReset = false;
         break;
         case '=':
         if (data.current.length && data.operator.length) {
           const result = operate(data.total, data.current, data.operator)
           newData.operator = '';
           newData.calculation = `${result}`;
-          newData.total =  ''
-          newData.current = `${result}`
+          newData.total =  '';
+          newData.current = `${result}`;
+          newData.shouldReset = true;
         }
         break;
         case '+/-':
         if (data.current.length) {
           let number = Number(data.current)*-1;
-          let newstring
+          let newstring;
           if (number < 0) {
-            newstring = data.total + data.operator + `(${number})`
+            newstring = data.total + data.operator + `(${number})`;
           } else {
-            newstring = data.total + data.operator + `${number}`
+            newstring = data.total + data.operator + `${number}`;
           }
           newData.current = `${number}`;
           newData.calculation = newstring;
+          newData.shouldReset = false;
         } 
         break;
         case '%':
@@ -66,6 +71,7 @@ const calculate = (data, btnName) => {
           let number = Number(data.current)/100;
           newData.current = `${number}`;
           newData.calculation = data.calculation + '%';
+          newData.shouldReset = false;
         }
         break;
         case 'AC':
@@ -73,12 +79,20 @@ const calculate = (data, btnName) => {
         newData.calculation = '0';
         newData.total = '';
         newData.current = '';
+        newData.shouldReset = false
         break;
         default:
-        const num = data.current + btnName;
-        const calculation = data.total + data.operator + data.current + btnName;
-        newData.current = num;
-        newData.calculation = calculation;
+        if (data.shouldReset) {
+          newData.current = btnName
+          newData.calculation = btnName;
+          newData.total = ''
+          newData.shouldReset = false;
+        } else {
+          const num = data.current + btnName;
+          const calculation = data.total + data.operator + data.current + btnName;
+          newData.current = num;
+          newData.calculation = calculation;
+        }
         break;
       }
       return newData
